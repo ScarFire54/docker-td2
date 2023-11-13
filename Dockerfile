@@ -1,9 +1,9 @@
 # Utilisez une image de base avec Java 17
-FROM adoptopenjdk/openjdk17:latest
+FROM openjdk:17
 
 # Copiez le fichier de construction Gradle et les dépendances
 COPY backend/build.gradle settings.gradle /backend/
-COPY backend/gradle /app/gradle
+COPY backend/gradle /backend/gradle
 COPY backend/src /backend/src
 
 # Définissez le répertoire de travail
@@ -16,4 +16,4 @@ RUN ./gradlew build
 EXPOSE 8080
 
 # Commande pour lancer l'application
-CMD ["java", "-jar", "build/libs/backend.jar"]
+CMD ["java", "-jar", "build/libs/backend-0.0.1-SNAPSHOT.jar"]
