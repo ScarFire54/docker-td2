@@ -1,19 +1,39 @@
-# Utilisez une image de base avec Java 17
-FROM openjdk:17
+FROM openjdk:20-slim
 
 # Copiez le fichier de construction Gradle et les dépendances
-COPY backend/build.gradle settings.gradle /backend/
-COPY backend/gradle /backend/gradle
-COPY backend/src /backend/src
+COPY build.gradle gradlew gradlew.bat app/
+COPY gradle app/gradle
+COPY src app/src
 
-# Définissez le répertoire de travail
-WORKDIR /backend
 
-# Exécutez la construction Gradle
+WORKDIR /app
+
+RUN apt-get update && \
+    apt-get install dos2unix && \
+    apt-get clean
+RUN dos2unix gradlew
+RUN chmod +x gradlew
 RUN ./gradlew build
 
-# Exposez le port sur lequel votre application Spring Boot fonctionne (par exemple, 8080)
 EXPOSE 8080
 
-# Commande pour lancer l'application
-CMD ["java", "-jar", "build/libs/backend-0.0.1-SNAPSHOT.jar"]
+RUN rm -rf build/libs/*.original
+
+# Dockerfile pour le service de base de données
+#FROM postgres:latest
+
+#ENV POSTGRES_USER=coviddb
+#ENV POSTGRES_PASSWORD=coviddb
+#ENV POSTGRES_DB=coviddb
+
+#RUN chmod +x /docker-entrypoint-initdb.d/createdb.sql
+
+#CMD ["postgres"]
+
+FROM eclipse-temurin:17-jre-ubi9-minimal
+
+COPY --from=0 /app/build/libs/app-0.0.1-SNAPSHOT.jar /app/app.jar
+
+WORKDIR /app
+
+CMD ["java", "-jar", "app.jar"]

@@ -2,15 +2,35 @@ version: '3'
 services:
   app:
     build:
-      context: .. # Le répertoire actuel contient le Dockerfile
+      dockerfile: Dockerfile
     ports:
-      - "8080:8080" # Mappez le port 8080 du conteneur sur le port 8080 de l'hôte
+      - "8080:8080"
     depends_on:
       - db
+    links:
+      - db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U db -d db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   db:
-    image: postgres:latest
+    hostname: db
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: MyTestDataBase
+      POSTGRES_USER: db
+      POSTGRES_PASSWORD: db
+      POSTGRES_DB: db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U db -d db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  default:
+    driver: bridge
