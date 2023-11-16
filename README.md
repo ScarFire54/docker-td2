@@ -8,7 +8,7 @@
 2. Go in folder
 3. Run `docker-compose build`
 4. Run `docker-compose up`
-5. Access webpage with link 'localhost:8080/' then api endpoint like in the examples below
+5. Access webpage with link 'localhost:8081/' then api endpoint like in the examples below
 
 ### WHAT CAN YOU TEST IN THIS API
 
@@ -46,5 +46,7 @@ There are some endpoints that can be used to test this API without authorization
 
 ### HOW TO USE JENKINS-COMPOSE WITH THIS PROJECT
 
-Use The version jenkins-compose, then on jenkins put the Jenkinsfile inside
+Use the version `jenkins-compose`, then on jenkins put the Jenkinsfile inside
 After that you can run the Jenkins Pipeline that you created.
+
+It may be necessary to add the path of the command `docker-compose` to run the pipeline.

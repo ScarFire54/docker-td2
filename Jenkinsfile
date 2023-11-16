@@ -11,6 +11,7 @@ pipeline {
                 }
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -23,7 +24,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    echo 'Running project..."
+                    echo 'Running project...'
                     sh 'docker-compose up -d'
                 }
             }
