@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "f553315b-5f4f-4fbd-9535-8a933ca8af5b",
+		"name": "Covid_API_Polytech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30001808"
+	},
+	"item": [
+		{
+			"name": "Get All User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userMail\": \"myDoctorMail2@lolmail.com\",\r\n    \"firstName\": \"JeanMich2\",\r\n    \"lastName\": \"Dujardin2\",\r\n    \"role\": \"Médecin\",\r\n    \"passwordHash\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User by Email",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/delete?email=myDoctorMail@lolmail.com",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "myDoctorMail@lolmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Center",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Post new center",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jean Prouvé\",\r\n    \"address\": \"2 Rue de la table\",\r\n    \"postalCode\": \"54000\",\r\n    \"city\": \"Nancy\",\r\n    \"phone\": \"+33 3 83 24 24 24\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/center/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"center",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete center by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/center/delete?id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"center",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get center search string",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Add User to Center",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

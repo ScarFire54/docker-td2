@@ -15,20 +15,10 @@ RUN dos2unix gradlew
 RUN chmod +x gradlew
 RUN ./gradlew build
 
-EXPOSE 8080
+EXPOSE 8081
 
 RUN rm -rf build/libs/*.original
 
-# Dockerfile pour le service de base de données
-#FROM postgres:latest
-
-#ENV POSTGRES_USER=coviddb
-#ENV POSTGRES_PASSWORD=coviddb
-#ENV POSTGRES_DB=coviddb
-
-#RUN chmod +x /docker-entrypoint-initdb.d/createdb.sql
-
-#CMD ["postgres"]
 
 FROM eclipse-temurin:17-jre-ubi9-minimal
 
